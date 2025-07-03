@@ -1,6 +1,16 @@
 import { Navigation } from "react-native-navigation";
-import React from 'react';
-import { View, Text } from 'react-native';
+import SQLite from 'react-native-sqlite-storage';
+import { registerScreens } from "./src/navigation/registers";
+import { Routes } from "./src/navigation/routes";
+import SyncManager from "./src/db/SyncManager";
+import "./src/styles";
+
+// SQLite.DEBUG(true);
+SQLite.enablePromise(true);
+
+let isAppLaunching = false;
+
+registerScreens();
 
 Navigation.setDefaultOptions({
   options: {
@@ -22,18 +32,19 @@ Navigation.setDefaultOptions({
   }
 });
 
-Navigation.registerComponent('HomeScreen', () => () =>
-  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    <Text>Hello world</Text>
-  </View>
-)
-
 Navigation.events().registerAppLaunchedListener(async () => {
-  await Navigation.setRoot({
-    root: {
-      component: {
-        name: 'HomeScreen'
-      }
+  // UNCOMMENT TO TRIGGER SYNC AGAIN
+  // await SyncManager.clearAllData()
+  
+  if (!isAppLaunching) {
+    isAppLaunching = true;
+    try {
+      const isSynced = await SyncManager.isEverythingSynced();
+      await Navigation.setRoot(isSynced ? Routes.Home : Routes.Sync);
+    } catch (error) {
+      await Navigation.setRoot(Routes.Sync);
+    } finally {
+      isAppLaunching = false;
     }
-  });
+  }
 });
