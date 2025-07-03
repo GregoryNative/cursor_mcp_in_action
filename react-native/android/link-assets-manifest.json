@@ -1,0 +1,49 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/WixMadeforDisplayApp-Bold.ttf",
+      "sha1": "e9e64b3d919b22216403f9865168b11a12b2dc61"
+    },
+    {
+      "path": "src/assets/fonts/WixMadeforDisplayApp-ExtraBold.ttf",
+      "sha1": "2f90addc4810bc1f74c99f1d1ff65757fcf8f04a"
+    },
+    {
+      "path": "src/assets/fonts/WixMadeforDisplayApp-Regular.ttf",
+      "sha1": "7daf3ae765af1b073e43d42f6b403293beec7263"
+    },
+    {
+      "path": "src/assets/fonts/WixMadeforTextApp-Bold.ttf",
+      "sha1": "19321d9d9ac11b04d71f4a14687e265f8097cace"
+    },
+    {
+      "path": "src/assets/fonts/WixMadeforTextApp-BoldItalic.ttf",
+      "sha1": "b2f918ebf30d2ce65a38bf788b946a68d1b0464f"
+    },
+    {
+      "path": "src/assets/fonts/WixMadeforTextApp-ExtraBold.ttf",
+      "sha1": "26319002d0d70ebfbb8b203d5b13c980655f0e26"
+    },
+    {
+      "path": "src/assets/fonts/WixMadeforTextApp-ExtraBoldItalic.ttf",
+      "sha1": "0afa8a909659453a9e6639afb8e2f2a8665f390c"
+    },
+    {
+      "path": "src/assets/fonts/WixMadeforTextApp-Italic.ttf",
+      "sha1": "05c8b1978c292c65143897906e20a9ca864660c4"
+    },
+    {
+      "path": "src/assets/fonts/WixMadeforTextApp-Medium.ttf",
+      "sha1": "49aa88cd9590a42c60d60cb0568c76ccd40ef1b1"
+    },
+    {
+      "path": "src/assets/fonts/WixMadeforTextApp-MediumItalic.ttf",
+      "sha1": "36664b7eff64b6083d9818484de1cc4185d3bebf"
+    },
+    {
+      "path": "src/assets/fonts/WixMadeforTextApp-Regular.ttf",
+      "sha1": "d008035433339ee40e7d4077d09d6bf8ddec81e2"
+    }
+  ]
+}
