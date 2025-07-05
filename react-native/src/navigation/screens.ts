@@ -8,6 +8,9 @@ export const Screens = {
     SyncScreen: "SyncScreen",
     ProductDetailsModal: "ProductDetailsModal",
     SideMenu: "SideMenu",
+    Customers: "Customers",
+    CustomerDetails: "CustomerDetails",
+    CustomerDetailsModal: "CustomerDetailsModal",
 }
 
 export const ScreenIds = {
@@ -16,4 +19,5 @@ export const ScreenIds = {
     SalesHistoryRoot: "SALES_HISTORY_ROOT_VIEW_ID",
     SalesHistoryDetails: "SALES_HISTORY_DETAILS_ID",
     SideMenu: 'SIDE_MENU_ID',
+    CustomersRoot: 'CUSTOMERS_ROOT_VIEW_ID',
 }
