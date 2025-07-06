@@ -1,12 +1,10 @@
-import { name as appName } from '../../app.json';
-
 export const Screens = {
-    App: appName,
     SalesHistory: "SalesHistory",
     SalesHistoryDetails: "SalesHistoryDetails",
     SalesHistoryDetailsModal: "SalesHistoryDetailsModal",
     More: "More",
     Checkout: "Checkout",
+    CheckoutCartDetails: "CheckoutCartDetails",
     SyncScreen: "SyncScreen",
     ProductDetailsModal: "ProductDetailsModal",
     SideMenu: "SideMenu",

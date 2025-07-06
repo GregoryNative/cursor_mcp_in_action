@@ -7,6 +7,7 @@ export function registerScreens() {
   Navigation.registerComponent(Screens.SideMenu, () => require('../screens/SideMenu').SideMenu);
   // checkout
   Navigation.registerComponent(Screens.Checkout, () => require('../screens/Checkout').CheckoutMaster);
+  Navigation.registerComponent(Screens.CheckoutCartDetails, () => require('../screens/CheckoutCartDetails').CheckoutCartDetails);
   Navigation.registerComponent(Screens.ProductDetailsModal, () => require('../screens/ProductDetailsModal').ProductDetailsModal);
   // sales history
   Navigation.registerComponent(Screens.SalesHistory, () => require('../screens/SalesHistory').SalesHistory);

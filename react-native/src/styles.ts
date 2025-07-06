@@ -31,7 +31,9 @@ Typography.loadTypographies({
     textSmallPrimary: { fontSize: 14, fontWeight: '600', lineHeight: 20, fontFamily: 'WixMadeforDisplayApp-Regular', color: Colors.textPrimary },
     textPrimary: { fontSize: 16, fontWeight: '600', lineHeight: 24, fontFamily: 'WixMadeforDisplayApp-Regular', color: Colors.textPrimary },
     textDefaultLight: { fontSize: 18, fontWeight: '600', lineHeight: 24, fontFamily: 'WixMadeforTextApp-Regular', color: Colors.textDefaultLight },
+    bodySmall: { fontSize: 14, fontWeight: '400', lineHeight: 20, fontFamily: 'WixMadeforTextApp-Regular', color: Colors.textDefault },
     bodySmallBold: { fontSize: 14, fontWeight: '700', lineHeight: 20, fontFamily: 'WixMadeforTextApp-Regular', color: Colors.textDefault },
+    bodyBold: { fontSize: 16, fontWeight: '700', lineHeight: 24, fontFamily: 'WixMadeforTextApp-Regular', color: Colors.textDefaultLight },
     bottomTab: { fontSize: 13, fontWeight: '500', lineHeight: 13, fontFamily: 'WixMadeforTextApp-Regular', color: Colors.textPrimary },
     label: { fontSize: 13, fontWeight: '600', lineHeight: 18, fontFamily: 'WixMadeforTextApp-Regular', color: Colors.black },
     labelMedium: { fontSize: 17, fontWeight: '600', lineHeight: 22, fontFamily: 'WixMadeforTextApp-Regular', color: Colors.black },
@@ -57,4 +59,6 @@ Assets.loadAssetsGroup('icons', {
     receipt: require('./assets/images/receipt.png'),
     menu: require('./assets/images/menu.png'),
     creditCard: require('./assets/images/creditcard.png'),
+    cash: require('./assets/images/cash.png'),
+    discount: require('./assets/images/discount.png'),
 });

@@ -74,33 +74,6 @@ export const ProductsList: React.FC<Props> = ({ componentId }) => {
                     }]
                 }
             });
-            // transition animation example
-            // Navigation.push(componentId, {
-            //     component: {
-            //         name: Screens.ProductDetailsModal,
-            //         passProps: {
-            //             productId: product.id
-            //         },
-            //         options: {
-            //             modalPresentationStyle: OptionsModalPresentationStyle.pageSheet,
-            //             layout: {
-            //                 backgroundColor: Colors.backgroundDefault,
-            //                 componentBackgroundColor: Colors.backgroundDefault
-            //             },
-            //             animations: {
-            //                 push: {
-            //                     sharedElementTransitions: [
-            //                         {
-            //                             fromId: `image${product.id}`,
-            //                             toId: `image${product.id}Dest`,
-            //                             interpolation: { type: 'spring' }
-            //                         },
-            //                     ],
-            //                 },
-            //             },
-            //         }
-            //     }
-            // });
         } catch (error) {
             console.error("Error handling product press:", error);
         }

@@ -1,5 +1,6 @@
 import { Navigation } from "react-native-navigation";
 import SQLite from 'react-native-sqlite-storage';
+import { LogBox } from 'react-native';
 import { registerScreens } from "./src/navigation/registers";
 import { Routes } from "./src/navigation/routes";
 import SyncManager from "./src/db/SyncManager";
@@ -7,6 +8,10 @@ import "./src/styles";
 
 // SQLite.DEBUG(true);
 SQLite.enablePromise(true);
+// Ignore log notification by message
+LogBox.ignoreLogs(['Warning: ...']);
+//Ignore all log notifications
+LogBox.ignoreAllLogs();
 
 let isAppLaunching = false;
 

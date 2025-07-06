@@ -5,6 +5,8 @@ import { ProductsList } from '../components/ProductsList';
 import { productsStore } from '../stores/productsStore';
 import { cartStore } from '../stores/cartStore';
 import { connect } from 'remx';
+import { Screens } from '../navigation/screens';
+import { Navigation } from 'react-native-navigation';
 
 interface Props {
     componentId: string;
@@ -26,6 +28,15 @@ const CheckoutMasterComponent = ({ componentId, itemsCount }: Props) => {
     }, []);
 
     const handleCheckoutPress = () => {
+        Navigation.push(componentId, {
+            component: {
+                name: Screens.CheckoutCartDetails,
+                passProps: {
+                    componentId,
+                    title: 'Cart',
+                },
+            },
+        });
     };
 
     return (
