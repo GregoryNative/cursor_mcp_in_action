@@ -3,7 +3,7 @@
         "gh-cli-mcp-server": {
             "command": "node",
             "args": [
-              "/Users/hryhoriih/workspaces/gregory/cursor-mcp-in-action/gh-cli-mcp-server/dist/index.js"
+              "./gh-cli-mcp-server/dist/index.js"
             ]
         },
         "figma-dev-mcp": {
