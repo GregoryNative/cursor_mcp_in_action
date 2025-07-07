@@ -1,0 +1,241 @@
+---
+description: Figma to Code Mapping Rule
+globs: 
+alwaysApply: false
+---
+# Figma to Code Mapping Rule
+
+## Overview
+This rule documents the conventions and process for translating Figma designs into react-native project. It also provides a mapping table for core design system components and their corresponding Figma elements.
+
+
+## General Conventions
+- For get_figma_data tool use depth 15.
+- Call get_variable_defs tool to get defined variables on screen (e.g. typography)
+- Always use react-native-navigation for creating new screen, check other screens for reference `react-native/src/screens`.
+- **Always wrap screens in SafeAreaView** - Import SafeAreaView from react-native and wrap the entire screen content with `<SafeAreaView style={{ flex: 1 }}>` to ensure proper handling of device safe areas (notches, status bars, etc.)
+- Use the design system components from `react-native/src/components` whenever possible.
+- Match colors, typography, and spacing to Figma tokens and design specs.
+- If a Figma element does not have a direct mapping, use the closest design system component and document the mapping here.
+- For each new screen, add a mapping section below.
+- Use precise spacing between elements, better to use `s` - it means paddingV-s4. So `s4` means `16px` in Figma
+- All components use react-native-ui-lib as the base UI library
+- Follow the established color scheme defined in `src/styles.ts`
+- Use consistent typography tokens (titleBold, textDefault, sectionSmall, etc.)
+- Apply consistent spacing using the predefined spacing tokens (s1-s10)
+- Use `Colors.separator` for borders and dividers
+- Use `Colors.textPrimary` for primary actions and accents
+- Use `Colors.backgroundDefault` for main backgrounds
+- **Use Assets.icons for icons** - Always use `Assets.icons.iconName` instead of direct require statements for consistency and maintainability
+- **⚠️ CRITICAL - Image URI Construction**: Always construct image URIs with proper path separator: `${BASE_URL}/${product.image}` - Note the forward slash (/) between BASE_URL and the image path. This is required for correct URL construction.
+- **⚠️ CRITICAL - Dividers and Separators**: Only add `<Divider />` components when they are explicitly shown in the Figma design. Do NOT add dividers between elements unless there is a visible "1pt Horizontal" line or separator in the Figma design. Many elements appear adjacent to each other without dividers - respect this exact spacing and layout from the design.
+- **⚠️ CRITICAL - Typography Reading**: Carefully read typography specifications from Figma. Pay special attention to font weights and sizes. For example, "Total" text in summaries often uses `bodySmallBold` (Body Small/bodySmallBold) not `textSmall`. Always double-check the typography mapping table below.
+
+## Core Design System to Figma Mapping Table
+
+| Design System Component                | Figma Element/Component Name         | Figma Node/Component ID | Description / Notes |
+|----|-----|---|---|
+| FooterBar                             | Sticky bottom                        | 1208:107466            | Bottom bar with total display and action button |
+| ListItemAddNew                        | List Elements / Add New              | 1208:107482, 1208:107483 | List item with icon, title, and add action |
+| ProductsList                          | Product list items                   | (varies)               | Product grid/list display |
+| Divider                               | 1pt Horizontal                       | 1208:107479            | Divider line |
+| Button                                | Main Button                          | 1208:107468            | Primary action button |
+| ButtonOutlined                        | Main CTA (Secondary)                 | (varies)               | Secondary action button |
+| --                                    | --                                   | --                     | -- |
+
+## Custom Components Table
+
+| Component Name | File Location | Description | Props | Usage Example |
+|---|---|---|---|---|
+| FooterBar | `src/components/FooterBar.tsx` | Bottom bar with total display and action button | `totalSum`, `itemsCount`, `buttonText`, `onButtonPress`, `currency?` | Checkout screens, cart summaries |
+| ListItemAddNew | `src/components/ListItemAddNew.tsx` | List item with icon, title, and add action | `icon`, `title`, `onPress` | Settings screens, add actions |
+
+## Component Details
+
+### FooterBar
+**Purpose**: Display totals, item count, and primary action button at the bottom of screens
+**Design Pattern**: 
+- Top border separator
+- Left side: "Total" title with item count below
+- Right side: Formatted currency amount
+- Full-width action button below
+- Uses primary color for button background
+
+**Props**:
+- `totalSum: number` - The total amount to display
+- `itemsCount: number` - Number of items in cart/selection
+- `buttonText: string` - Text for the action button
+- `onButtonPress: () => void` - Callback when button is pressed
+- `currency?: string` - Currency symbol (defaults to '$')
+
+**Usage**:
+```tsx
+<FooterBar 
+    totalSum={125.50}
+    itemsCount={3}
+    buttonText="Charge"
+    onButtonPress={() => handleCharge()}
+    currency="$"
+/>
+```
+
+### ListItemAddNew
+**Purpose**: Interactive list item with icon and add action indicator
+**Design Pattern**:
+- Horizontal layout with icon on left
+- Title text in center with flex
+- Plus sign (+) on right in primary color
+- Bottom border separator
+- TouchableOpacity for press handling
+
+**Props**:
+- `icon: ImageSourcePropType` - Icon to display on the left
+- `title: string` - Main text content
+- `onPress: () => void` - Callback when item is pressed
+
+**Usage**:
+```tsx
+import { Assets } from 'react-native-ui-lib';
+
+<ListItemAddNew 
+    icon={Assets.icons.cart}
+    title="Add Customer Amount"
+    onPress={() => handleAddCustomerAmount()}
+/>
+```
+
+## When to Use These Components
+
+### Use FooterBar when:
+- Displaying totals and checkout actions
+- Need a consistent bottom action bar
+- Showing cart summaries with action buttons
+- Any screen that needs total display with primary action
+
+### Use ListItemAddNew when:
+- Creating add/create actions in lists
+- Building settings-style interfaces with actions
+- Need consistent list item styling with icons
+- Implementing "Add new" type functionality
+
+## Integration with Existing Patterns
+
+These components follow the same patterns as existing components in the project:
+- Use the same color tokens from `src/styles.ts`
+- Follow the same typography scale
+- Use consistent spacing (s4, s5 for padding)
+- Apply the same border and separator styling
+- Use the same button styling approach as other screens
+
+## Design Tokens Mapping
+
+### Colors (from Figma to react-native-ui-lib)
+| Figma Token | Code Token | Hex Value | Usage |
+|---|---|---|---|
+| System Colors/B&W/White | Colors.backgroundDefault | #FFFFFF | Background colors |
+| System Colors/Grey/Grey 10 | Colors.textDefault | #20303C | Primary text color |
+| System Colors/Blue/Blue 30 | Colors.textPrimary | #116DFF | Primary actions, buttons |
+| Text/$textDangerLight | Colors.textDanger | #FC3D2F | Error/danger text |
+
+## Figma Variables to Project Typography Mapping
+
+### 📋 How to Use Figma Variables
+1. **Get Variable Definitions**: Use Figma MCP tools to get variables for selected screen
+2. **Map to Project Tokens**: Use the mapping tables below to convert Figma variables to project typography tokens
+3. **Apply in Code**: Use the mapped tokens in your React Native UI Lib components
+
+### 🎯 Figma Variable Definitions (Current Project)
+Based on the cart screen design, these are the confirmed Figma variables:
+
+| Figma Variable | Font Specification | React Native UI Lib Token | Usage Examples |
+|---|---|---|---|
+| `Body/bodyBold` | Font(family: "Wix Madefor Text", style: Bold, size: 16, weight: 700, lineHeight: 24) | `bodyBold` | Product names, screen titles, important headings |
+| `Body Small/bodySmall` | Font(family: "Wix Madefor Text", style: Regular, size: 14, weight: 400, lineHeight: 20) | `bodySmall` | Subtotal, Tax, Quantity info, secondary text |
+| `Body Small/bodySmallBold` | Font(family: "Wix Madefor Text", style: Bold, size: 14, weight: 700, lineHeight: 20) | `bodySmallBold` | Total amounts, emphasized small text, action items |
+
+### Spacing Guidelines
+- Use `s4` (16px) for standard padding
+- Use `s5` (20px) for larger spacing
+- Use `s2` (8px) for small gaps
+- Use `s3` (12px) for medium gaps
+
+### Available Asset Icons
+The following icons are available through `Assets.icons` (defined in [src/styles.ts](mdc:react-native/src/styles.ts)):
+
+| Icon Name | Asset Reference | Usage | Description |
+|---|---|---|---|
+| cart | `Assets.icons.cart` | Shopping cart actions, cart screens | Shopping cart icon |
+| groups | `Assets.icons.groups` | Customer/group management | People/groups icon |
+| receipt | `Assets.icons.receipt` | Orders, receipts, transactions | Receipt/document icon |
+| menu | `Assets.icons.menu` | Navigation, menu actions | Hamburger menu icon |
+| creditCard | `Assets.icons.creditCard` | Payment methods, credit card | Credit card icon |
+| cash | `Assets.icons.cash` | Cash payments, money | Cash/money icon |
+| discount | `Assets.icons.discount` | Discounts, promotions | Discount/percentage icon |
+
+**Usage Example:**
+```tsx
+import { Assets } from 'react-native-ui-lib';
+
+<ListItemAddNew 
+    icon={Assets.icons.cart}
+    title="Add Custom Amount"
+    onPress={() => handleAddCustomAmount()}
+/>
+```
+
+## How to Use This Mapping
+
+### For Developers:
+1. **Identify the Figma element** - Look at the design and find the element you need to implement
+2. **Find the mapping** - Use the Core Design System table to find the corresponding component
+3. **Check screen-specific details** - Look at the Screen-Specific Mappings for detailed node IDs and implementation notes
+4. **Apply design tokens** - Use the Design Tokens Mapping to ensure consistent styling
+5. **Import and use** - Import the component from `src/components` and use with the documented props
+
+### Example Workflow:
+```tsx
+// 1. Import required components (including SafeAreaView)
+import { SafeAreaView } from 'react-native';
+import { Assets } from 'react-native-ui-lib';
+import { FooterBar } from '../components';
+
+// 2. Wrap screen content in SafeAreaView and use components with proper props
+<SafeAreaView style={{ flex: 1 }}>
+    <View flex bg-backgroundDefault>
+        {/* Screen content */}
+        <FooterBar 
+            totalSum={347.75}
+            itemsCount={4}
+            buttonText="Charge"
+            onButtonPress={() => handleCharge()}
+            currency="$"
+        />
+    </View>
+</SafeAreaView>
+```
+
+### For Designers:
+1. **Use consistent node naming** - Name Figma elements clearly to match component names
+2. **Apply design tokens** - Use the mapped color and typography tokens
+3. **Document new patterns** - Add new components to this mapping when created
+4. **Update node IDs** - When restructuring Figma files, update the node IDs in this document
+
+## Common Mistakes to Avoid
+
+### 🚫 Image URI Construction
+- **WRONG**: `${BASE_URL}${PATH_TO_RESOURCE}` (missing slash)
+- **CORRECT**: `${BASE_URL}/${PATH_TO_RESOURCE}` (with forward slash)
+
+### 🚫 Divider Placement
+- **WRONG**: Adding dividers everywhere or assuming they're needed between sections
+- **CORRECT**: Only add `<Divider />` when there's a visible "1pt Horizontal" line in the Figma design
+- **CORRECT**: Check the Figma design carefully - many adjacent elements don't have dividers
+
+### 🚫 General Reading of Figma
+- **WRONG**: Assuming typography or spacing without checking the design
+- **CORRECT**: Always cross-reference with the Figma design tokens and specifications
+
+## TODOs / Questions
+- If a Figma element is not mapped, add it to the table and update as the design system evolves
+- Consider adding component variants for different states (loading, disabled, etc.)
+- Add more complex component mappings (forms, modals, etc.) as they are created

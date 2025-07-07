@@ -25,6 +25,7 @@ export const FooterBar: React.FC<FooterBarProps> = ({
                 </View>
                 <Button
                     bodyBold
+                    labelStyle={{ color: Colors.textDefaultLight }}
                     label={buttonText}
                     size={Button.sizes.large}
                     backgroundColor={Colors.textPrimary}

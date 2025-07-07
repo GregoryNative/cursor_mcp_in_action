@@ -33,7 +33,7 @@ Typography.loadTypographies({
     textDefaultLight: { fontSize: 18, fontWeight: '600', lineHeight: 24, fontFamily: 'WixMadeforTextApp-Regular', color: Colors.textDefaultLight },
     bodySmall: { fontSize: 14, fontWeight: '400', lineHeight: 20, fontFamily: 'WixMadeforTextApp-Regular', color: Colors.textDefault },
     bodySmallBold: { fontSize: 14, fontWeight: '700', lineHeight: 20, fontFamily: 'WixMadeforTextApp-Regular', color: Colors.textDefault },
-    bodyBold: { fontSize: 16, fontWeight: '700', lineHeight: 24, fontFamily: 'WixMadeforTextApp-Regular', color: Colors.textDefaultLight },
+    bodyBold: { fontSize: 16, fontWeight: '700', lineHeight: 24, fontFamily: 'WixMadeforTextApp-Regular', color: Colors.textDefault },
     bottomTab: { fontSize: 13, fontWeight: '500', lineHeight: 13, fontFamily: 'WixMadeforTextApp-Regular', color: Colors.textPrimary },
     label: { fontSize: 13, fontWeight: '600', lineHeight: 18, fontFamily: 'WixMadeforTextApp-Regular', color: Colors.black },
     labelMedium: { fontSize: 17, fontWeight: '600', lineHeight: 22, fontFamily: 'WixMadeforTextApp-Regular', color: Colors.black },
