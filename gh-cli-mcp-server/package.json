@@ -8,8 +8,7 @@
     "start": "node dist/index.js",
     "all": "npm run clean && npm run build",
     "build": "tsc",
-    "clean": "rm -rf coverage dist target tsconfig.tsbuildinfo",
-    "lint": "eslint --ext .js,.ts ."
+    "clean": "rm -rf dist"
   },
   "devDependencies": {
     "@types/node": "^22.15.18",
