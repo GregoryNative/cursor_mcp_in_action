@@ -7,9 +7,9 @@ A multi-component project demonstrating Cursor MCP (Model Context Protocol) inte
 ```
 cursor-mcp-in-action/
 ├── .cursor/                 # MCP configurations and rules
-├── gh-cli-mcp-server/      # Local MCP server with GitHub CLI tool
-├── react-native/          # Mobile application
-└── server/                # Node.js server for products/orders/customers
+├── gh-cli-mcp-server/       # Local MCP server with GitHub CLI tool
+├── react-native/            # Mobile application
+└── server/                  # Node.js server for products/orders/customers
 ```
 
 ### Components
