@@ -2,18 +2,22 @@ import ProductsRepository from './repositories/ProductsRepository';
 import { IProductsRepository } from '../domain/repositories/IProductsRepository';
 import SyncStatusRepository from './repositories/SyncStatusRepository';
 import { ISyncStatusRepository } from '../domain/repositories/ISyncStatusRepository';
+import CustomersRepository from './repositories/CustomersRepository';
+import { ICustomersRepository } from '../domain/repositories/ICustomersRepository';
 import OrdersRepository from './repositories/OrdersRepository';
 import { IOrdersRepository } from '../domain/repositories/IOrdersRepository';
 
 const ENTITIES = {
     PRODUCTS: 'products',
     ORDERS: 'orders',
+    CUSTOMERS: 'customers'
 } as const;
 
 type EntityType = typeof ENTITIES[keyof typeof ENTITIES];
 type RepositoryMap = {
     [ENTITIES.PRODUCTS]: IProductsRepository;
     [ENTITIES.ORDERS]: IOrdersRepository;
+    [ENTITIES.CUSTOMERS]: ICustomersRepository;
 };
 
 class SyncManager {
@@ -23,12 +27,14 @@ class SyncManager {
     constructor(repositories: {
         syncStatusRepository: ISyncStatusRepository;
         productsRepository: IProductsRepository;
+        customersRepository: ICustomersRepository;
         ordersRepository: IOrdersRepository;
     }) {
         this.syncStatusRepository = repositories.syncStatusRepository;
         this.repositories = {
             [ENTITIES.PRODUCTS]: repositories.productsRepository,
-            [ENTITIES.ORDERS]: repositories.ordersRepository
+            [ENTITIES.ORDERS]: repositories.ordersRepository,
+            [ENTITIES.CUSTOMERS]: repositories.customersRepository,
         };
         
         // Initialize sync status entities
@@ -76,6 +82,7 @@ class SyncManager {
             const clearPromises = [
                 (this.repositories[ENTITIES.PRODUCTS] as any).clearProducts(),
                 (this.repositories[ENTITIES.ORDERS] as any).clearOrders(),
+                (this.repositories[ENTITIES.CUSTOMERS] as any).clearCustomers()
             ];
 
             await Promise.all(clearPromises);
@@ -93,5 +100,6 @@ class SyncManager {
 export default new SyncManager({
     syncStatusRepository: SyncStatusRepository,
     productsRepository: ProductsRepository,
+    customersRepository: CustomersRepository,
     ordersRepository: OrdersRepository
 });

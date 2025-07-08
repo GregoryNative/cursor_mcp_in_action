@@ -49,6 +49,29 @@ const ordersRoute: Layout = {
     },
 };
 
+
+const customersRoute: Layout = {
+    stack: {
+        id: ScreenIds.CustomersRoot,
+        children: [
+            {
+                component: {
+                    name: Screens.Customers,
+                }
+            }
+        ],
+        options: {
+            bottomTab: {
+                text: "Customers",
+                icon: {
+                    uri: 'groups',
+                    scale: 4,
+                },
+            }
+        }
+    },
+};
+
 const moreRoute: Layout = {
     component: {
         name: Screens.More,
@@ -74,6 +97,7 @@ const homeRoute: LayoutRoot = {
                     children: [
                         checkoutRoute,
                         ordersRoute,
+                        customersRoute,
                         moreRoute
                     ],
                     options: {

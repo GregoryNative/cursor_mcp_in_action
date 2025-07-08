@@ -13,4 +13,8 @@ export function registerScreens() {
   Navigation.registerComponent(Screens.SalesHistory, () => require('../screens/SalesHistory').SalesHistory);
   Navigation.registerComponent(Screens.SalesHistoryDetails, () => require('../screens/SalesHistoryDetails').SalesHistoryDetails);
   Navigation.registerComponent(Screens.SalesHistoryDetailsModal, () => require('../screens/SalesHistoryDetailsModal').SalesHistoryDetailsModal);
+  // customers
+  Navigation.registerComponent(Screens.Customers, () => require('../screens/Customers').Customers);
+  Navigation.registerComponent(Screens.CustomerDetails, () => require('../screens/CustomerDetails').CustomerDetails);
+  Navigation.registerComponent(Screens.CustomerDetailsModal, () => require('../screens/CustomerDetailsModal').CustomerDetailsModal);
 }
